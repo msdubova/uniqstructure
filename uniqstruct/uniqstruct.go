@@ -1,5 +1,7 @@
 package uniqstruct
 
+import "sort"
+
 type ID int
 type Structure struct {
 	ID
@@ -23,6 +25,10 @@ func Uniqstruct(s []Structure) []Structure {
 			uniqSlice = append(uniqSlice, item)
 		}
 	}
+
+	sort.Slice(uniqSlice, func(i, j int) bool {
+		return uniqSlice[i].ID < uniqSlice[j].ID
+	})
 
 	return uniqSlice
 }
